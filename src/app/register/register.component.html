@@ -4,31 +4,42 @@
       <div class="panel panel-default">
         <div class="panel-heading">Register</div>
         <div class="panel-body">
-          <form class="form-horizontal">
+          <form class="form-horizontal" #form="ngForm" novalidate (ngSubmit)="onSubmit(form)">
+
+            {{ form.value | json }}
+
+            <ul class="list-group">
+              <li class="list-group-item text-danger" *ngIf="userName.errors?.required && userName.touched">The name is required!</li>
+              <li class="list-group-item text-danger" *ngIf="userEmail.errors?.required && userEmail.touched">The email is required!</li>
+              <li class="list-group-item text-danger" *ngIf="userPassword.errors?.required && userPassword.touched">The password is required!</li>
+              <li class="list-group-item text-danger" *ngIf="userPassword.errors?.minlength && userPassword.touched">The password should be longer than 6 characters!</li>
+            </ul>
+
             <div class="form-group">
               <label for="name" class="control-label col-md-4">Full name</label>
 
               <div class="col-md-6">
-                <input id="name" type="text" name="name" class="form-control">
+                <input id="name" type="text" #userName="ngModel" ngModel name="name" class="form-control" required>
               </div>
             </div>
             <div class="form-group">
               <label for="name" class="control-label col-md-4">E-mail Address</label>
 
               <div class="col-md-6">
-                <input id="email" type="email" class="form-control">
+                <input id="email" type="email" #userEmail="ngModel" ngModel name="email" class="form-control" required>
               </div>
             </div>
             <div class="form-group">
               <label for="password" class="col-md-4 control-label">Password</label>
 
               <div class="col-md-6">
-                <input type="password" class="form-control">
+                <input type="password" #userPassword="ngModel" ngModel name="password" class="form-control" minlength="6" required>
               </div>
             </div>
             <div class="form-group">
               <div class="col-md-8 col-md-offset-4">
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" class="btn btn-primary"
+                  [disabled]="form.invalid">
                   Register
                 </button>
               </div>
