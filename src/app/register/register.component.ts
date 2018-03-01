@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service'
-import { error } from 'util';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +9,7 @@ import { error } from 'util';
 export class RegisterComponent implements OnInit {
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
   ) { }
 
   ngOnInit() {
@@ -18,11 +17,14 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(form){
     console.log(form.value.email);
-    this.authService.register(form.value.name, form.value.email, form.value.password).then((data) => {
-      console.log(data)
+    this.authService.register(form.value.name, form.value.email, form.value.password).then((userData) => {
+
+        this.authService.logUserIn(userData);
+
+      console.log(userData);
     }, (error) => {
-      console.log(error)
-    })
+      console.log(error);
+    });
   }
 
 }
