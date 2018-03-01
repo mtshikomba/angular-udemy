@@ -11,9 +11,13 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li><a>Login</a> </li>
-        <li><a>Register</a> </li>
-        <li><a>Logout</a> </li>
+        <li *ngIf="!isLoggedIn()"><a>Login</a> </li>
+        <li *ngIf="!isLoggedIn()"><a>Register</a> </li>
+        <li class="dropdown">
+
+          <a class="dropdown-toggle" role="button" *ngIf="isLoggedIn()" (click)="logout()">Logout</a>
+
+        </li>
       </ul>
     </div>
   </div>

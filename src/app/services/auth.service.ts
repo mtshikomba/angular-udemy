@@ -63,4 +63,12 @@ export class AuthService{
         // not authenticated
         return false;
     }
+
+    logout() {
+
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+
+            this.router.navigate(['auth/login']);
+    }
 }
