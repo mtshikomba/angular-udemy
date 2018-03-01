@@ -17,8 +17,7 @@ export class AuthService{
     }
 
     register(name: string, email: string, password: string): Promise<UserdData>{
-           const user = { name: name, email: email, password: password };
-        return this.http.post(`${CONFIG.API_URL}/register`, user)
+        return this.http.post(`${CONFIG.API_URL}/register`, { name: name, email: email, password: password })
                 .toPromise()
                 .then((response) => {
                     let token = response.json().token;
@@ -30,6 +29,19 @@ export class AuthService{
                     // console.log(error)
                     return error;
                 });
+    }
+
+    login(email: string, password: string): Promise<UserdData>{
+           return this.http.post(`${CONFIG.API_URL}/authenticate`, { email: email, password: password })
+               .toPromise()
+               .then((response) => {
+                    let token = response.json().token;
+                    let user = response.json().user.data;
+                    let userData = new UserdData(token, user);
+
+                    return userData;
+               })
+
     }
 
     logUserIn(userData: UserdData): void{
