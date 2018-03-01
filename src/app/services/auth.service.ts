@@ -56,9 +56,11 @@ export class AuthService{
         let token = localStorage.getItem('token');
         let user =  localStorage.getItem('user');
 
+        //user is authenticated
         if ( token && user ) {
             return true;
         }
+        // not authenticated
         return false;
     }
 }
