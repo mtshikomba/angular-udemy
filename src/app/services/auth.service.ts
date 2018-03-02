@@ -3,15 +3,16 @@ import { Injectable } from '@angular/core';
 import { CONFIG } from '../config/config';
 import { Http } from '@angular/http';
 import { Router} from "@angular/router";
-import {User} from "../classes/user"
 import {UserdData} from "../classes/UserData";
+import {NotifyService} from "./notify.service";
 
 @Injectable()
 export class AuthService{
 
     constructor(
        private http: Http,
-       private router: Router
+       private router: Router,
+       private notifyService: NotifyService
     ){
 
     }
@@ -26,7 +27,6 @@ export class AuthService{
 
                     return userData;
                 }, (error) => {
-                    // console.log(error)
                     return error;
                 });
     }
@@ -40,7 +40,7 @@ export class AuthService{
                     let userData = new UserdData(token, user);
 
                     return userData;
-               })
+               });
 
     }
 
@@ -49,6 +49,8 @@ export class AuthService{
 
         localStorage.setItem('user', JSON.stringify(userData.user));
 
+        this.notifyService.notify('Successfully logged in.', 'success');
+
         this.router.navigate(['dashboard']);
     }
 
@@ -56,7 +58,7 @@ export class AuthService{
         let token = localStorage.getItem('token');
         let user =  localStorage.getItem('user');
 
-        //user is authenticated
+        // user is authenticated
         if ( token && user ) {
             return true;
         }
