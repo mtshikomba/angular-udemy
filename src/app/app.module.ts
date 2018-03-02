@@ -15,6 +15,7 @@ import {AuthGuard} from "./guards/auth/auth.guard";
 import {AuthedGuard} from "./guards/authed/authed.guard";
 import { NotifyComponent } from './notify/notify.component';
 import {NotifyService} from "./services/notify.service";
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import {NotifyService} from "./services/notify.service";
     RegisterComponent,
     DashboardComponent,
     LoginComponent,
-    NotifyComponent
+    NotifyComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
