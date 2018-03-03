@@ -2,6 +2,8 @@
  import {AuthService} from "./auth.service";
  import {Http, Headers, RequestOptions} from "@angular/http";
  import {CONFIG} from "../config/config";
+ import {User} from "../classes/user";
+ import {UserdData} from "../classes/UserData";
 
 @Injectable()
 export class UserService {
@@ -17,9 +19,9 @@ export class UserService {
 
   }
 
-  getUserById(id: number){
+  getUserById(id: number): Promise<User>{
       if (id === this.authService.getAuthUserId()){
-          return this.authService.getAuthUser();
+          return Promise.resolve(this.authService.getAuthUser());
       }
 
       let option = new RequestOptions({ headers: this.headers});
@@ -28,9 +30,11 @@ export class UserService {
           .toPromise()
           .then((response) => {
             console.log(response.json());
+            return response.json();
           })
           .catch((error) => {
             console.log(error);
+            // return error;
           });
   }
 
