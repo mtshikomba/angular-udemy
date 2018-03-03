@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router"
+import {UserService} from "../services/user.service";
 
 @Component({
   selector: 'app-profile',
@@ -11,7 +12,8 @@ export class ProfileComponent implements OnInit {
   id: number;
 
   constructor(
-      private router: ActivatedRoute
+      private router: ActivatedRoute,
+      private userService: UserService
   ) { }
 
   ngOnInit() {
@@ -19,6 +21,8 @@ export class ProfileComponent implements OnInit {
     this.router.params.subscribe((params) => {
       this.id = +params['id'];
     });
+
+    this.userService.getUserById(this.id);
 
   }
 

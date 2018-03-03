@@ -16,6 +16,7 @@ import {AuthedGuard} from "./guards/authed/authed.guard";
 import { NotifyComponent } from './notify/notify.component';
 import {NotifyService} from "./services/notify.service";
 import { ProfileComponent } from './profile/profile.component';
+import {UserService} from "./services/user.service";
 
 
 @NgModule({
@@ -33,7 +34,7 @@ import { ProfileComponent } from './profile/profile.component';
     FormsModule,
     HttpModule
   ],
-  providers: [AuthService, AuthGuard, AuthedGuard, NotifyService],
+  providers: [AuthService, AuthGuard, AuthedGuard, NotifyService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

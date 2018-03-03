@@ -17,6 +17,18 @@ export class AuthService{
 
     }
 
+    getAuthUser(){
+           return JSON.parse(localStorage.getItem('user'));
+    }
+
+    getAuthUserId(){
+        return JSON.parse(localStorage.getItem('user')).id;
+    }
+
+    getToken(): string{
+        return localStorage.getItem('token');
+    }
+
     register(name: string, email: string, password: string): Promise<UserdData>{
         return this.http.post(`${CONFIG.API_URL}/register`, { name: name, email: email, password: password })
                 .toPromise()
