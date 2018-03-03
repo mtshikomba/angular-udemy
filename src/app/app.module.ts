@@ -18,6 +18,7 @@ import {NotifyService} from "./services/notify.service";
 import { ProfileComponent } from './profile/profile.component';
 import {UserService} from "./services/user.service";
 import { PrettyDatePipe } from './pipes/pretty=date.pipe';
+import {NgProgressModule} from "ng2-progressbar";
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { PrettyDatePipe } from './pipes/pretty=date.pipe';
     BrowserModule,
     RouterModule.forRoot(ROUTES),
     FormsModule,
-    HttpModule
+    HttpModule,
+      NgProgressModule
   ],
   providers: [AuthService, AuthGuard, AuthedGuard, NotifyService, UserService],
   bootstrap: [AppComponent]
