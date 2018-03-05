@@ -1,8 +1,8 @@
 export class User {
     constructor(
         id: number,
-        name: string,
-        email: string,
+        public name: string,
+        public email: string,
         avatar: string,
         joined: object
     ){

@@ -4,6 +4,7 @@
  import {CONFIG} from "../config/config";
  import {User} from "../classes/user";
  import {UserdData} from "../classes/UserData";
+ import {toPromise} from "rxjs/operator/toPromise";
 
 @Injectable()
 export class UserService {
@@ -35,6 +36,21 @@ export class UserService {
           .catch((error) => {
             console.log(error);
             // return error;
+          });
+  }
+
+  updateProfile(name: string, email: string): Promise<User>{
+
+      let option = new RequestOptions({ headers: this.headers});
+      let data = { name: name, email: email };
+      return this.http.put(`${CONFIG.API_URL}/user/update`, data, option )
+          .toPromise()
+          .then((response) => {
+              let user = response.json().data;
+
+              localStorage.setItem('user', JSON.stringify(user));
+
+              return user;
           });
   }
 
