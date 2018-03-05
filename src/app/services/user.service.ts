@@ -1,21 +1,21 @@
- import { Injectable } from '@angular/core';
+ import {EventEmitter, Injectable} from '@angular/core';
  import {AuthService} from "./auth.service";
  import {Http, Headers, RequestOptions} from "@angular/http";
  import {CONFIG} from "../config/config";
  import {User} from "../classes/user";
- import {UserdData} from "../classes/UserData";
- import {toPromise} from "rxjs/operator/toPromise";
 
 @Injectable()
 export class UserService {
 
   private headers: Headers;
+  public userProfileUpdated: EventEmitter<User>;
 
   constructor(
       private authService: AuthService,
       private http: Http,
   ) {
 
+      this.userProfileUpdated = new EventEmitter();
     this.headers = new Headers({'Authorization': `Bearer ${this.authService.getToken()}`});
 
   }
@@ -49,7 +49,7 @@ export class UserService {
               let user = response.json().data;
 
               localStorage.setItem('user', JSON.stringify(user));
-
+              this.userProfileUpdated.emit(user);
               return user;
           });
   }

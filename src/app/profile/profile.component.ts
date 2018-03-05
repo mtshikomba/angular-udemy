@@ -20,6 +20,10 @@ export class ProfileComponent implements OnInit {
       private authService: AuthService
   ) {
 
+    this.userService.userProfileUpdated.subscribe((user) => {
+      this.user = user;
+    });
+
   }
 
   ngOnInit() {
