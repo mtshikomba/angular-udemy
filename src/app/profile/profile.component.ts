@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router"
 import {UserService} from "../services/user.service";
 import {User} from "../classes/user";
+import {AuthService} from "../services/auth.service";
 
 @Component({
   selector: 'app-profile',
@@ -15,8 +16,11 @@ export class ProfileComponent implements OnInit {
 
   constructor(
       private router: ActivatedRoute,
-      private userService: UserService
-  ) { }
+      private userService: UserService,
+      private authService: AuthService
+  ) {
+
+  }
 
   ngOnInit() {
 
@@ -29,6 +33,10 @@ export class ProfileComponent implements OnInit {
           this.user = user;
         });
 
+  }
+
+  isAuthUserProfile(): boolean{
+    return +this.id === +this.authService.getAuthUserId();
   }
 
 }
