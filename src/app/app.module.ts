@@ -21,6 +21,8 @@ import { PrettyDatePipe } from './pipes/pretty=date.pipe';
 import {NgProgressModule} from "ng2-progressbar";
 import { WallComponent } from './profile/wall/wall.component';
 import { EditProfileComponent } from './profile/edit-profile/edit-profile.component';
+import { FollowComponent } from './profile/follow/follow.component';
+import {FollowService} from "./services/follow.service";
 
 
 @NgModule({
@@ -33,7 +35,8 @@ import { EditProfileComponent } from './profile/edit-profile/edit-profile.compon
     ProfileComponent,
     PrettyDatePipe,
     WallComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    FollowComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +45,7 @@ import { EditProfileComponent } from './profile/edit-profile/edit-profile.compon
     HttpModule,
       NgProgressModule
   ],
-  providers: [AuthService, AuthGuard, AuthedGuard, NotifyService, UserService],
+  providers: [AuthService, AuthGuard, AuthedGuard, NotifyService, UserService, FollowService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
