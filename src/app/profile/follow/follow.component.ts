@@ -12,6 +12,7 @@ export class FollowComponent implements OnInit {
 
   @Input() currentProfileId;
   public isFollowing: boolean;
+  private isLoading = true;
 
   constructor(private followService: FollowService, public ngProgress: NgProgressService,
               public notify: NotifyService) { }
@@ -19,24 +20,30 @@ export class FollowComponent implements OnInit {
   ngOnInit() {
     this.followService.isFollowing(this.currentProfileId)
         .then(response => {
+          this.isLoading = false;
           this.isFollowing = response;
         });
   }
 
   follow() {
+    this.isLoading = true;
     this.ngProgress.start();
     this.followService.follow(this.currentProfileId).then(user => {
+
       this.ngProgress.done();
       this.isFollowing = true;
+      this.isLoading = false;
       this.notify.notify(`You are now following ${user.name}!`, 'success');
     });
   }
 
-  unfollow(){
+  unfollow() {
+    this.isLoading = true;
     this.ngProgress.start();
     this.followService.unfollow(this.currentProfileId).then(user => {
       this.ngProgress.done();
       this.isFollowing = false;
+      this.isLoading = false;
       this.notify.notify(`You unfollowed ${user.name}!`, 'success');
     });
   }
