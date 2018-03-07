@@ -12,7 +12,7 @@ export const ROUTES = [
     { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
     { path: 'auth/login', component: LoginComponent, canActivate: [AuthedGuard]},
     { path: 'user/profile/:id', component: ProfileComponent, canActivate: [AuthGuard],
-        children: [{ path: 'wall', component: WallComponent },
+        children: [{ path: '', component: WallComponent },
                    { path: 'edit', component: EditProfileComponent}]}
 
 ];
