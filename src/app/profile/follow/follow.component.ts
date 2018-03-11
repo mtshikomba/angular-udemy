@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {FollowService} from "../../services/follow.service";
 import {NgProgressService} from "ng2-progressbar";
 import {NotifyService} from "../../services/notify.service";
@@ -8,7 +8,7 @@ import {NotifyService} from "../../services/notify.service";
   templateUrl: './follow.component.html',
   styleUrls: ['./follow.component.css']
 })
-export class FollowComponent implements OnInit {
+export class FollowComponent implements OnInit, OnChanges {
 
   @Input() currentProfileId;
   public isFollowing: boolean;
@@ -18,11 +18,21 @@ export class FollowComponent implements OnInit {
               public notify: NotifyService) { }
 
   ngOnInit() {
-    this.followService.isFollowing(this.currentProfileId)
-        .then(response => {
-          this.isLoading = false;
-          this.isFollowing = response;
-        });
+      this.checkIfFollowing();
+  }
+
+  private checkIfFollowing() {
+      this.followService.isFollowing(this.currentProfileId)
+          .then(response => {
+              this.isLoading = false;
+              this.isFollowing = response;
+          });
+  }
+
+// listen to when data for this component changes
+  ngOnChanges(changes) {
+    console.log(changes);
+    this.checkIfFollowing();
   }
 
   follow() {
