@@ -20,6 +20,19 @@ export class UserService {
 
   }
 
+  getUserWall(id: number){
+
+      let options = new RequestOptions({ headers: this.headers});
+      //  pass the token to the api as you request data
+      return this.http.get(`${CONFIG.API_URL}/user/profile/${id}/wall`, options)
+          .toPromise()
+          .then((response) => {
+              // console.log(response.json());
+              return response.json().data;
+          });
+
+  }
+
   getUserById(id: number): Promise<User>{
       if (id === this.authService.getAuthUserId()){
           return Promise.resolve(this.authService.getAuthUser());
@@ -30,7 +43,7 @@ export class UserService {
       return this.http.get(`${CONFIG.API_URL}/user/${id}`, option)
           .toPromise()
           .then((response) => {
-            console.log(response.json());
+            // console.log(response.json());
             return response.json();
           })
           .catch((error) => {
