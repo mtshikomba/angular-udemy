@@ -15,6 +15,6 @@ export const ROUTES = [
     { path: 'user/profile/:id', component: ProfileComponent, canActivate: [AuthGuard],
         children: [{ path: '', component: WallComponent },
                    { path: 'edit', component: EditProfileComponent}]},
-    { path: 'joke/create', component: CreateJokeComponent, CanActivate: [AuthGuard]}
+    { path: 'create/joke', component: CreateJokeComponent, CanActivate: [AuthGuard]}
 
 ];
