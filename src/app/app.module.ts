@@ -24,6 +24,7 @@ import { EditProfileComponent } from './profile/edit-profile/edit-profile.compon
 import { FollowComponent } from './profile/follow/follow.component';
 import {FollowService} from "./services/follow.service";
 import { CreateJokeComponent } from './create-joke/create-joke.component';
+import {JokeService} from "./services/joke.service";
 
 
 @NgModule({
@@ -48,7 +49,7 @@ import { CreateJokeComponent } from './create-joke/create-joke.component';
       NgProgressModule,
       ReactiveFormsModule
   ],
-  providers: [AuthService, AuthGuard, AuthedGuard, NotifyService, UserService, FollowService],
+  providers: [AuthService, AuthGuard, AuthedGuard, NotifyService, UserService, FollowService, JokeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
