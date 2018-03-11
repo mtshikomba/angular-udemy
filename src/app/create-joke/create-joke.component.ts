@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {JokeService} from "../services/joke.service";
+import { NgProgressService} from "ng2-progressbar"
 
 @Component({
   selector: 'app-create-joke',
@@ -11,7 +13,7 @@ export class CreateJokeComponent implements OnInit {
   public jokeForm: FormGroup;
 
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, public jokeService: JokeService, public ngProgress: NgProgressService) {
     this.createForm();
   }
 
@@ -32,8 +34,14 @@ export class CreateJokeComponent implements OnInit {
 
   }
 
-  onSubmit(){
-    console.log(this.jokeForm.value);
+  onSubmit() {
+    this.ngProgress.start();
+    this.jokeService.createJoke(this.jokeForm.value)
+        .then(joke => {
+          console.log(joke);
+          this.ngProgress.done();
+          this.jokeForm.reset();
+        });
   }
 
 }
