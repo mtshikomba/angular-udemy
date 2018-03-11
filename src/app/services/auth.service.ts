@@ -5,7 +5,6 @@ import { Http } from '@angular/http';
 import { Router} from "@angular/router";
 import {UserdData} from "../classes/UserData";
 import {NotifyService} from "./notify.service";
-import {NgProgressService} from "ng2-progressbar";
 
 @Injectable()
 export class AuthService{
@@ -14,7 +13,6 @@ export class AuthService{
        private http: Http,
        private router: Router,
        private notifyService: NotifyService,
-       private bar: NgProgressService
     ){
 
     }
@@ -46,16 +44,13 @@ export class AuthService{
     }
 
     login(email: string, password: string): Promise<UserdData>{
-        this.bar.start();
         return this.http.post(`${CONFIG.API_URL}/authenticate`, { email: email, password: password })
                .toPromise()
                .then((response) => {
+
                     let token = response.json().token;
                     let user = response.json().user.data;
                     let userData = new UserdData(token, user);
-
-                    // stop the progress bar
-                    this.bar.done();
 
                     return userData;
                });
