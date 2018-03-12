@@ -2,3 +2,30 @@
 <h3 class="text-center text-capitalize">
   Welcome to your dashboard!
 </h3>
+
+
+<div *ngIf="!isLoading">
+
+  <div *ngFor="let joke of data.data">
+    <app-joke [joke]="joke"></app-joke>
+  </div>
+
+
+  <button class="btn btn-danger btn-lg text-capitalize"
+    [disabled]="!data.prev_page_url" (click)="getPrevJokes()">
+    Previous page
+  </button>
+  <button class="btn btn-primary btn-lg text-capitalize pull-right"
+    [disabled]="!data.next_page_url" (click)="getNextJokes()">
+    Next page
+  </button>
+  <br>
+  <br>
+  <br>
+  <br>
+
+</div>
+
+<div *ngIf="isLoading" class="text-center">
+  LOADING..
+</div>
