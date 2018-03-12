@@ -32,4 +32,20 @@ export class JokeService {
           });
   }
 
+    getJokes(endPoint = null): Promise<any>{
+        let url ;
+            if (endPoint){
+                url  = endPoint;
+            } else {
+                url = `${CONFIG.API_URL}/jokes`;
+            }
+        let option = new RequestOptions({ headers: this.headers});
+
+        return this.http.get(url, option )
+            .toPromise()
+            .then(response => {
+                return response.json();
+            });
+    }
+
 }
