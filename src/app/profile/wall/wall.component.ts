@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from "../../services/user.service";
 import { ActivatedRoute } from "@angular/router";
+import {NgProgressService} from "ng2-progressbar";
 
 @Component({
   selector: 'app-wall',
@@ -13,7 +14,7 @@ export class WallComponent implements OnInit {
   public id;
   public isLoading = true;
 
-  constructor(private userService: UserService, private router: ActivatedRoute) { }
+  constructor(private userService: UserService, private router: ActivatedRoute, private ngProgress: NgProgressService) { }
 
   ngOnInit() {
     this.router.params.subscribe(params => {
@@ -23,10 +24,12 @@ export class WallComponent implements OnInit {
   }
 
   getUserWall() {
+    this.ngProgress.start();
     this.userService.getUserWall(this.id)
         .then(response => {
             this.jokes = response;
           this.isLoading = false;
+          this.ngProgress.done();
         });
   }
 

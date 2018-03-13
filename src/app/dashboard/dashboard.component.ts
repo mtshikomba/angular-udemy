@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {JokeService} from "../services/joke.service";
+import {NgProgressService} from "ng2-progressbar";
 
 @Component({
   selector: 'app-dashboard',
@@ -12,7 +13,8 @@ export class DashboardComponent implements OnInit {
   public isLoading = true;
 
   constructor(
-      private jokeService: JokeService
+      private jokeService: JokeService,
+      private ngProgress: NgProgressService
   ) { }
 
   ngOnInit() {
@@ -30,11 +32,13 @@ export class DashboardComponent implements OnInit {
 
 
   getJokes(endPoint = null) {
+      this.ngProgress.start();
       this.jokeService.getJokes(endPoint)
           .then(response => {
             console.log(response);
               this.data = response;
               this.isLoading = false;
+              this.ngProgress.done();
           });
   }
 }
