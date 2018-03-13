@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {AuthService} from "../services/auth.service";
 
 @Component({
   selector: 'app-joke',
@@ -8,9 +9,17 @@ import {Component, Input, OnInit} from '@angular/core';
 export class JokeComponent implements OnInit {
   @Input() joke;
 
-  constructor() { }
+  constructor(
+      private authService: AuthService
+  ) { }
 
   ngOnInit() {
+
   }
+
+  canModify(): boolean{
+      return this.joke.user.id === this.authService.getAuthUserId();
+  }
+
 
 }
