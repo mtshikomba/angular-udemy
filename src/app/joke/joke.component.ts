@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AuthService} from "../services/auth.service";
 import {FormControl, Validators} from "@angular/forms";
 import {JokeService} from "../services/joke.service";
@@ -12,6 +12,8 @@ import {NotifyService} from "../services/notify.service";
 })
 export class JokeComponent implements OnInit {
   @Input() joke;
+  @Output() jokeDeleted = new EventEmitter();
+
   public editing = false;
   title = new FormControl;
   content = new FormControl;
@@ -28,15 +30,30 @@ export class JokeComponent implements OnInit {
       this.content = new FormControl(this.joke.joke, Validators.required);
   }
 
-  canModify(): boolean{
+  canModify(): boolean {
       return this.joke.user.id === this.authService.getAuthUserId();
   }
 
-  edit(){
+  edit() {
     this.editing = true;
   }
 
-  updateJoke(){
+  cancel() {
+      this.title.reset();
+      this.content.reset();
+      this.editing = false;
+  }
+
+  delete() {
+      this.ngProgress.start();
+      this.jokeService.deleteJoke(this.joke.id)
+          .then(response => {
+            this.jokeDeleted.emit(this.joke.id);
+            this.ngProgress.done();
+          });
+  }
+
+  updateJoke() {
     this.ngProgress.start();
     this.jokeService.updateJoke(this.joke.id, {
       title: this.title.value, content: this.content.value

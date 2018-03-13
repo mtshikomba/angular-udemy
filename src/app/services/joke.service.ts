@@ -47,6 +47,18 @@ export class JokeService {
           });
   }
 
+  deleteJoke(id: number): Promise<any>{
+      let url = `${CONFIG.API_URL}/jokes/${id}`;
+      let option = new RequestOptions({ headers: this.headers});
+
+      return this.http.delete(url, option )
+          .toPromise()
+          .then(response => {
+              // console.log(response);
+              return response.json();
+          });
+  }
+
   getJokes(endPoint = null): Promise<any>{
         let url ;
             if (endPoint){
