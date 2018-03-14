@@ -2,7 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http'
+import { HttpModule } from '@angular/http';
+import { GravatarModule } from '@infinitycube/gravatar';
 
 import { AuthService } from './services/auth.service'
 
@@ -49,7 +50,8 @@ import { JokeComponent } from './joke/joke.component';
     FormsModule,
     HttpModule,
       NgProgressModule,
-      ReactiveFormsModule
+      ReactiveFormsModule,
+      GravatarModule
   ],
   providers: [AuthService, AuthGuard, AuthedGuard, NotifyService, UserService, FollowService, JokeService],
   bootstrap: [AppComponent]
