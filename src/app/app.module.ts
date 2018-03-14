@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { GravatarModule } from '@infinitycube/gravatar';
 
 import { AuthService } from './services/auth.service'
 
@@ -51,9 +50,8 @@ import { HomeComponent } from './home/home.component';
     RouterModule.forRoot(ROUTES),
     FormsModule,
     HttpModule,
-      NgProgressModule,
-      ReactiveFormsModule,
-      GravatarModule
+    NgProgressModule,
+    ReactiveFormsModule,
   ],
   providers: [AuthService, AuthGuard, AuthedGuard, NotifyService, UserService, FollowService, JokeService],
   bootstrap: [AppComponent]
