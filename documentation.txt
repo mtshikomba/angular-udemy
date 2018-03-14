@@ -1,0 +1,28 @@
+-- Deploying your to heroku:
+    make sure your have this
+    "scripts": {
+        "ng": "ng",
+        "start": "ng node.js",
+        "build": "ng build",
+        "test": "ng test",
+        "lint": "ng lint",
+        "e2e": "ng e2e"
+      },
+    add this object to your package.json, by using the corresponding version of node and npm on your local machine
+      "engines": {
+          "node": "6.12.13",
+          "npm": "3.10.10"
+        }
+
+    create a server.js file and add this content
+         const express = require("express");
+         const path = require("path");
+         const app = express();
+
+         app.use(express.static(__dirname + '/dist'));
+
+         app.listen(process.env.PORT || 8080)
+
+
+-- Packages
+    gravatar -> for the profile icon
