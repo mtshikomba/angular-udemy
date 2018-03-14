@@ -38,8 +38,9 @@ export class AuthService{
                     let userData = new UserdData(token, user);
 
                     return userData;
-                }, (error) => {
-                    return error;
+                })
+                .catch(error => {
+                    return Promise.reject(error.json());
                 });
     }
 
@@ -53,7 +54,10 @@ export class AuthService{
                     let userData = new UserdData(token, user);
 
                     return userData;
-               });
+               })
+            .catch(error => {
+                return Promise.reject(error.json());
+            })
 
     }
 

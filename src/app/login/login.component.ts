@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
         })
         .catch(error => {
           this.ngProgress.done();
-          this.notifyService.notify('Error, Invalid Credentials, Please Try Again!', 'error');
+          this.notifyService.notify(error.error + ', please try again!', 'error');
         });
   }
 
