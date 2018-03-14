@@ -12,7 +12,7 @@ export class FollowComponent implements OnInit, OnChanges {
 
   @Input() currentProfileId;
   public isFollowing: boolean;
-  private isLoading = true;
+  public isLoading = true;
 
   constructor(private followService: FollowService, public ngProgress: NgProgressService,
               public notify: NotifyService) { }

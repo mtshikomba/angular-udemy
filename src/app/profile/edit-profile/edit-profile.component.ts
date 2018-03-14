@@ -13,7 +13,7 @@ import {NotifyService} from "../../services/notify.service";
 })
 export class EditProfileComponent implements OnInit {
 
-  private user: User;
+  public user: User;
 
   constructor(private authService: AuthService, private userService: UserService,
               private ngProgress: NgProgressService, public notifyService: NotifyService) { }
