@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { GravatarModule } from '@infinitycube/gravatar';
 
 import { AuthService } from './services/auth.service'
 
@@ -28,6 +27,7 @@ import { CreateJokeComponent } from './create-joke/create-joke.component';
 import {JokeService} from "./services/joke.service";
 import { JokeComponent } from './joke/joke.component';
 import { HomeComponent } from './home/home.component';
+import { GravatarModule } from '@infinitycube/gravatar';
 
 
 @NgModule({
