@@ -26,3 +26,16 @@
 
 -- Packages
     gravatar -> for the profile icon
+
+-- Upgrading node
+
+    https://askubuntu.com/questions/426750/how-can-i-update-my-nodejs-to-the-latest-version
+
+    sudo npm cache clean -f
+    sudo npm install -g n
+    sudo n stable
+
+    sudo ln -sf /usr/local/n/versions/node/<VERSION>/bin/node /usr/bin/nodejs
+
+    use this if upgrading to the lates version
+    sudo n latest
