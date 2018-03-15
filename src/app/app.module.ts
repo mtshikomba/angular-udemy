@@ -27,7 +27,6 @@ import { CreateJokeComponent } from './create-joke/create-joke.component';
 import {JokeService} from "./services/joke.service";
 import { JokeComponent } from './joke/joke.component';
 import { HomeComponent } from './home/home.component';
-import { GravatarModule } from '@infinitycube/gravatar';
 
 
 @NgModule({
@@ -53,7 +52,6 @@ import { GravatarModule } from '@infinitycube/gravatar';
     HttpModule,
     NgProgressModule,
     ReactiveFormsModule,
-    GravatarModule
   ],
   providers: [AuthService, AuthGuard, AuthedGuard, NotifyService, UserService, FollowService, JokeService],
   bootstrap: [AppComponent]
