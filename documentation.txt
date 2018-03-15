@@ -14,9 +14,13 @@
           "npm": "3.10.10"
         }
 
+    add the following dev dependencies to the dependencies
+
+        "@angular/cli": "1.6.8",
+        "@angular/compiler-cli": "^5.2.0",
+
     create a server.js file and add this content
          const express = require("express");
-         const path = require("path");
          const app = express();
 
          app.use(express.static(__dirname + '/dist'));
