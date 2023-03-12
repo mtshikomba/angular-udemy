@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  client:
+    build:
+      context: .
+#      dockerfile: Dockerfile
+    ports:
+      - "8006:8080"
+#    volumes:
+#      - .:/app
+#    command: npm start --port 8006
+    restart: always
+
