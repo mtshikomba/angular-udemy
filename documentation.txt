@@ -43,3 +43,6 @@
 
     use this if upgrading to the lates version
     sudo n latest
+
+-- Docker Config
+https://stackoverflow.com/questions/68548071/how-to-write-dockerfile-to-serve-angular-app-and-node-server
