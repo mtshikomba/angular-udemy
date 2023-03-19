@@ -20,20 +20,20 @@ export class FollowService {
 
   isFollowing(id: number): Promise<boolean>{
     let body = { user_to_check_if_is_following_id: id};
-    let url = `${CONFIG.API_URL}/user/is/following`;
+    let url = `${CONFIG.API_URL}/users/${this.authService.getAuthUserId()}/is-following-this-user/${id}`;
     let options = new RequestOptions({ headers: this.headers});
 
     return this.http.post(url, body, options)
         .toPromise()
         .then(response => {
-            return response.json().following;
+            return response.json().data.following;
         });
   }
 
 
   follow(id: number): Promise<User> {
         let body = { user_to_follow_id: id};
-        let url = `${CONFIG.API_URL}/user/follow`;
+        let url = `${CONFIG.API_URL}/users/${this.authService.getAuthUserId()}/follow-this-user/${id}`;
         let options = new RequestOptions({ headers: this.headers});
 
         return this.http.post(url, body, options)
@@ -45,7 +45,7 @@ export class FollowService {
 
     unfollow(id: number): Promise<User> {
         let body = { user_to_unfollow_id: id};
-        let url = `${CONFIG.API_URL}/user/unfollow`;
+        let url = `${CONFIG.API_URL}/users/${this.authService.getAuthUserId()}/unfollow-this-user/${id}`;
         let options = new RequestOptions({ headers: this.headers});
 
         return this.http.post(url, body, options)
@@ -54,6 +54,4 @@ export class FollowService {
                 return response.json().data;
             });
     }
-
-
 }
