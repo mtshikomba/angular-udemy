@@ -45,7 +45,7 @@ export class AuthService{
     }
 
     login(email: string, password: string): Promise<UserdData>{
-        return this.http.post(`${CONFIG.API_URL}/authenticate`, { email: email, password: password })
+        return this.http.post(`${CONFIG.API_URL}/login`, { email: email, password: password })
                .toPromise()
                .then((response) => {
 
